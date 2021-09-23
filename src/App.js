@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header'
+import SideBar from './Components/SideBar'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Chat from './Components/Chat'
+import Login from './Components/Login'
+import { useStateValue } from './StateProvider';
 
 function App() {
+
+  const [{ user }] = useStateValue();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+
+      <Router>
+        {!user ? (<Login />) : (
+          <>
+            <Header />
+            <div className="app__body">
+              <SideBar />
+
+              <Switch>
+
+                <Route path="/room/:roomId">
+                  <Chat />
+                </Route>
+
+                <Route path="/">
+                  <h1>Welcome</h1>
+                </Route>
+
+              </Switch>
+
+            </div>
+          </>
+        )}
+
+      </Router>
+
     </div>
   );
 }
