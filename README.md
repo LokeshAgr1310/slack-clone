@@ -11,5 +11,5 @@ Live Demo can be viewed at https://slack-clone-b2c6d.web.app/
 
 # Install react modules
 
-- 1 - cd frontend
-- 2 - npm install
+- 1 - npm install
+- 2 - npm run -> To run your app in localhost
